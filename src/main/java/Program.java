@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**         Метод добавление новых игрушек и возможность изменения веса (частоты выпадения игрушки)
         Возможность организовать розыгрыш игрушек.
         Например, следующим образом:
@@ -8,7 +11,9 @@
         Не забываем уменьшить количество игрушек
 */
 public class Program {
+    int n = 10; // количество игрушек
     public static void main(String[] args) {
+
         Toy Doll = new Toy(33,"Doll", 1,30);
         Toy Robot = new Toy(7,"Robot", 2,20);
         Toy Constructor = new Toy(23,"Constructor", 1,15);
@@ -19,17 +24,50 @@ public class Program {
         System.out.println(Soft_toy.getInfo());
 
         addNewToy(111,"Road", 1,50);
-        changeDropFrequency();
+        addNewToy(222,"Board_games", 3,5);
+//        changeDropFrequency(222,20);
+
+        ArrayList<Toy> basketWithToys = new ArrayList<>();
+        System.out.println("Build ArrayList of Toys");
+        basketWithToys.add(new Toy(301, "Toy1", 1, 5));
+        basketWithToys.add(new Toy(302, "Toy2", 1, 10));
+        basketWithToys.add(new Toy(303, "Toy3", 1, 13));
+        for (Toy basketWithToy : basketWithToys) {
+            System.out.println(basketWithToy.getInfo());
+        }
+
+        ArrayList<Toy> basketWithToys2 = new ArrayList<>();
+        addNewToyInBasket(basketWithToys2, 777,"Board_games777", 1,5);
+        for (Toy toy : basketWithToys2) {
+            System.out.println(toy.getInfo());
+        }
+
+//        public static void printBasket(ArrayList<>) {
+//            basketWithToys.add(new Toy(303, "Toy3", 1, 13));
+//            System.out.println("Added new toy in ArrayList");
+//            System.out.println(toy.getInfo());
+//        }
     }
-    public static void addNewToy(int number, String name, int qua, int drop) {
-        System.out.println("Get add toy...");
-        Toy toy = new Toy(number, name,qua, drop);
+    public static void addNewToy(int id, String name, int qua, int drop) {
+        System.out.println("Get add new toy...");
+        Toy toy = new Toy(id, name,qua, drop);
         System.out.println(toy.getInfo());
     }
-    public static void changeDropFrequency() {
-        System.out.println("Get change Drop Frequency of the toys");
-        int drop = Toy.r.nextInt(0, 5);
-        System.out.print("newDrop: " + drop);
+    public static ArrayList<Toy> addNewToyInBasket(List<Toy> basketWithToys2, int id, String name, int qua, int drop) {
+        System.out.println("Get add new toy...");
+        basketWithToys2 = new ArrayList<>();
+        basketWithToys2.add(new Toy(id, name, qua, drop));
+        return (ArrayList<Toy>) basketWithToys2;
     }
+//    public static void changeDropFrequency(int id,int newDrop) {
+//        System.out.println("Get change Drop Frequency of the toys");
+//        for (int i = 0; i < n; i++) {
+//            if (List[i] == id) drop = newDrop;
+//        }
+//        System.out.print("newDrop: " + newDrop);
+//        System.out.println(toy.getInfo());
+//    }
+    public static void choiceOfPrizeToys(){
 
+    }
 }
