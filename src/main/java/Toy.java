@@ -17,7 +17,12 @@ public class Toy {
             this.quantity = quantity;
             this.drop_frequency = drop_frequency;
         }
-        public String getInfo() {
+
+    public Toy() {
+
+    }
+
+    public String getInfo() {
         return String.format("id: %d   name: %s   quantity: %d   drop_frequency: %d", id, name, quantity,
                 drop_frequency, getClass().getSimpleName());
     }
