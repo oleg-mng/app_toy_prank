@@ -13,6 +13,7 @@ import java.util.List;
         Не забываем уменьшить количество игрушек
 */
 public class Program {
+    private static ArrayList<Toy> basketWithToys3;
     int n = 10; // количество игрушек
     public static void main(String[] args) {
 
@@ -44,10 +45,12 @@ public class Program {
 
         ArrayList<Toy> basketWithToys2 = new ArrayList<>();
         System.out.println("Created ArrayList_2 'basketWithToys2' of Toys in Method addNewToyInBasket");
-        addNewToyInBasket(basketWithToys2, 701, "Robot1", 1, 15);
-        addNewToyInBasket(basketWithToys2, 702, "Robot2", 1, 20);
-        addNewToyInBasket(basketWithToys2, 703, "Robot3", 1, 25);
-        basketWithToys2.add(new Toy(704, "Robot4", 1, 40));
+        addNewToyInBasket(basketWithToys2, 701, "Doll", 1, 10);
+        addNewToyInBasket(basketWithToys2, 702, "Robot", 1, 20);
+        addNewToyInBasket(basketWithToys2, 703, "Constructor", 1, 25);
+        addNewToyInBasket(basketWithToys2, 704, "Frog", 1, 10);
+        addNewToyInBasket(basketWithToys2, 705, "Fox", 1, 10);
+        basketWithToys2.add(new Toy(706, "Bracelet", 1, 25));
 
         System.out.println("---------------------");
         System.out.println("Printing basketWithToys2");
@@ -55,9 +58,18 @@ public class Program {
         System.out.println("Printing basketWithToys");
         printArray(basketWithToys);
 
+        basketWithToys3 = new ArrayList<>();
         System.out.println("---------------------");
-        System.out.println("Winning toy");
+        System.out.println("Define the array of winners toys");
         choiceOfPrizeToys(basketWithToys2);
+        choiceOfPrizeToys(basketWithToys2);
+        choiceOfPrizeToys(basketWithToys2);
+        System.out.println("Printing basketWithToys3");
+        printArray(basketWithToys3);
+
+        getBasketPrizeToy(basketWithToys3);
+        System.out.println("Basket of leftover toys:");
+        printArray(basketWithToys3);
     }
 
     private static void printArray(ArrayList<Toy> basketWithToys2) {
@@ -84,13 +96,19 @@ public class Program {
 //        System.out.print("newDrop: " + newDrop);
 //        System.out.println(toy.getInfo());
 //    }
-    public static void choiceOfPrizeToys(ArrayList<Toy> basketWithToys2){
+    public static ArrayList<Toy> choiceOfPrizeToys(ArrayList<Toy> basketWithToys2){
         SecureRandom random = new SecureRandom();
-        ArrayList<Toy> basketWithToys3 = new ArrayList<>();
         basketWithToys3.add(basketWithToys2.get(random.nextInt(basketWithToys2.size())));
-        for (Toy toy : basketWithToys3) {
-            System.out.println(toy.getInfo());
-        }
+//        for (Toy toy : basketWithToys3) {
+//            System.out.println(toy.getInfo());
+//        }
+        return basketWithToys3;
+    }
+    public static ArrayList<Toy> getBasketPrizeToy(ArrayList<Toy> basketWithToys3){
+        System.out.println("this toy won");
+        System.out.println(basketWithToys3.get(0).getInfo());
+        basketWithToys3.remove(0);
 
+        return basketWithToys3;
     }
 }
