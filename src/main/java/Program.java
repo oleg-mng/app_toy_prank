@@ -1,4 +1,6 @@
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**         Метод добавление новых игрушек и возможность изменения веса (частоты выпадения игрушки)
@@ -23,8 +25,9 @@ public class Program {
         System.out.println(Constructor.getInfo());
         System.out.println();
 
-        addNewToy(111, "Road", 1, 50);
-        addNewToy(222, "Board_games", 3, 5);
+        addNewToy(111, "Road", 1, 30);
+        addNewToy(222, "Board_games", 3, 15);
+        addNewToy(223, "Crane", 1, 55);
 //        changeDropFrequency(222,20);
 
         // реализован класс наследник ChangeDrop для корректировки drop_frequency (веса)
@@ -32,7 +35,6 @@ public class Program {
         System.out.println();
         System.out.println("Realized class ChangeDrop for modify drop_frequency (веса)");
         System.out.println(Constructor1.getInfo());
-
 
         ArrayList<Toy> basketWithToys = new ArrayList<>();
         System.out.println("Created ArrayList 'basketWithToys' of Toys:");
@@ -52,6 +54,10 @@ public class Program {
         printArray(basketWithToys2);
         System.out.println("Printing basketWithToys");
         printArray(basketWithToys);
+
+        System.out.println("---------------------");
+        System.out.println("Winning toy");
+        choiceOfPrizeToys(basketWithToys2);
     }
 
     private static void printArray(ArrayList<Toy> basketWithToys2) {
@@ -78,7 +84,13 @@ public class Program {
 //        System.out.print("newDrop: " + newDrop);
 //        System.out.println(toy.getInfo());
 //    }
-    public static void choiceOfPrizeToys(){
+    public static void choiceOfPrizeToys(ArrayList<Toy> basketWithToys2){
+        SecureRandom random = new SecureRandom();
+        ArrayList<Toy> basketWithToys3 = new ArrayList<>();
+        basketWithToys3.add(basketWithToys2.get(random.nextInt(basketWithToys2.size())));
+        for (Toy toy : basketWithToys3) {
+            System.out.println(toy.getInfo());
+        }
 
     }
 }
