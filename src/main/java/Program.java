@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +17,7 @@ import java.util.List;
 public class Program {
     private static ArrayList<Toy> basketWithToys3;
     int n = 10; // количество игрушек
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Toy Doll = new Toy(33, "Doll", 1, 30);
         Toy Robot = new Toy(7, "Robot", 2, 20);
@@ -104,9 +106,14 @@ public class Program {
 //        }
         return basketWithToys3;
     }
-    public static ArrayList<Toy> getBasketPrizeToy(ArrayList<Toy> basketWithToys3){
+    public static ArrayList<Toy> getBasketPrizeToy(ArrayList<Toy> basketWithToys3) throws IOException {
         System.out.println("this toy won");
         System.out.println(basketWithToys3.get(0).getInfo());
+
+        FileWriter writer = new FileWriter("wonToy.csv");
+            writer.write(basketWithToys3.get(0).getInfo() + " " + System.getProperty("line.separator"));
+        writer.close();
+
         basketWithToys3.remove(0);
 
         return basketWithToys3;
