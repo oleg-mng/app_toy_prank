@@ -16,7 +16,6 @@ import java.util.List;
 */
 public class Program {
     private static ArrayList<Toy> basketWithToys3;
-    int n = 10; // количество игрушек
     public static void main(String[] args) throws IOException {
 
         Toy Doll = new Toy(33, "Doll", 1, 30);
@@ -31,9 +30,8 @@ public class Program {
         addNewToy(111, "Road", 1, 30);
         addNewToy(222, "Board_games", 3, 15);
         addNewToy(223, "Crane", 1, 55);
-//        changeDropFrequency(222,20);
 
-        // реализован класс наследник ChangeDrop для корректировки drop_frequency (веса)
+        // Implemented class ChangeDrop to adjust drop_frequency (weight)
         Toy Constructor1= new ChangeDrop(2002, "CONSTRUCT_for_SMALL", 1, 15);
         System.out.println();
         System.out.println("Realized class ChangeDrop for modify drop_frequency (веса)");
@@ -43,16 +41,17 @@ public class Program {
         System.out.println("Created ArrayList 'basketWithToys' of Toys:");
         basketWithToys.add(new Toy(301, "Toy1", 1, 5));
         basketWithToys.add(new Toy(302, "Toy2", 1, 10));
-        basketWithToys.add(new Toy(303, "Toy3", 1, 13));
+        basketWithToys.add(new ChangeDrop(303, "Toy3", 1, 13));
 
         ArrayList<Toy> basketWithToys2 = new ArrayList<>();
         System.out.println("Created ArrayList_2 'basketWithToys2' of Toys in Method addNewToyInBasket");
         addNewToyInBasket(basketWithToys2, 701, "Doll", 1, 10);
         addNewToyInBasket(basketWithToys2, 702, "Robot", 1, 20);
         addNewToyInBasket(basketWithToys2, 703, "Constructor", 1, 25);
-        addNewToyInBasket(basketWithToys2, 704, "Frog", 1, 10);
+        addNewToyInBasket(basketWithToys2, 704, "Frog", 3, 10);
         addNewToyInBasket(basketWithToys2, 705, "Fox", 1, 10);
         basketWithToys2.add(new Toy(706, "Bracelet", 1, 25));
+        basketWithToys2.add(new ChangeDrop(707, "Puzzle", 2, 5));
 
         System.out.println("---------------------");
         System.out.println("Printing basketWithToys2");
@@ -86,32 +85,26 @@ public class Program {
         System.out.println(toy.getInfo());
     }
     public static ArrayList<Toy> addNewToyInBasket(List<Toy> basketWithToys2, int id, String name, int qua, int drop) {
-//        System.out.println("Get add new toy...");
+
         basketWithToys2.add(new Toy(id, name, qua, drop));
         return (ArrayList<Toy>) basketWithToys2;
     }
-//    public static void changeDropFrequency(int id,int newDrop) {
-//        System.out.println("Get change Drop Frequency of the toys");
-//        for (int i = 0; i < n; i++) {
-//            if (List[i] == id) drop = newDrop;
-//        }
-//        System.out.print("newDrop: " + newDrop);
-//        System.out.println(toy.getInfo());
+//    public static void changeDropFrequency() {
+    // realized in Class ChangeDrop
+
 //    }
     public static ArrayList<Toy> choiceOfPrizeToys(ArrayList<Toy> basketWithToys2){
         SecureRandom random = new SecureRandom();
         basketWithToys3.add(basketWithToys2.get(random.nextInt(basketWithToys2.size())));
-//        for (Toy toy : basketWithToys3) {
-//            System.out.println(toy.getInfo());
-//        }
+
         return basketWithToys3;
     }
     public static ArrayList<Toy> getBasketPrizeToy(ArrayList<Toy> basketWithToys3) throws IOException {
-        System.out.println("this toy won");
+        System.out.println("this toy won (data saved to file 'wonToy.csv':");
         System.out.println(basketWithToys3.get(0).getInfo());
 
         FileWriter writer = new FileWriter("wonToy.csv");
-            writer.write(basketWithToys3.get(0).getInfo() + " " + System.getProperty("line.separator"));
+            writer.write(basketWithToys3.get(0).getInfo());
         writer.close();
 
         basketWithToys3.remove(0);
